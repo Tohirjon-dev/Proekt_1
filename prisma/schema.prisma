@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  fullname String? @default("User")
+  role String @default("Student")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+   studentAnswers StudentAnswer[]
+  TestSession    TestSession[]
+  @@map("users")
+}
+
+
+
+model Subject{
+  id Int @id @default(autoincrement())
+  name String @unique
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  topics Topic[]
+  @@map("subjects")
+}
+model Topic{
+  id Int @id @default(autoincrement())
+  name String @unique
+  description String?
+  subjectId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  subject Subject @relation(fields: [subjectId],references: [id],onDelete: Cascade)
+  tests Test[]
+  @@map("topics")
+}
+model Test{
+  id Int @id @default(autoincrement())
+  title String @unique
+  description String?
+  difficulty String @default("Medium")
+  timeLimit Int?
+  topicId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  topics Topic @relation(fields: [topicId],references: [id],onDelete: Cascade)
+  questions Question[]
+  testSession TestSession[]
+  @@map("tests")
+}
+model Question{
+  id Int @id @default(autoincrement())
+  text String
+  testId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  test Test @relation(fields: [testId],references: [id],onDelete: Cascade)
+  options Option[]
+  studentAnswers StudentAnswer[]
+  @@map("questions")
+}
+model Option{
+  id Int @id @default(autoincrement())
+  text String
+  inCorrect Boolean @default(false)
+  questionId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  questions Question @relation(fields: [questionId],references: [id],onDelete: Cascade)
+  studentAnswer StudentAnswer[]
+  @@map("options")
+}
+model TestSession{
+  id Int @id @default(autoincrement())
+  testId Int
+  userId Int
+  startTime DateTime @default(now())
+  endTime DateTime?
+  score Float?
+  status String @default("Active")
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  test Test @relation(fields: [testId],references: [id],onDelete: Cascade)
+  studentAnswer StudentAnswer[]
+  @@map("testSessions")
+}
+model StudentAnswer{
+  id Int @id @default(autoincrement())
+  userId Int
+  questionId Int
+  optionId Int
+  testSessionId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  question Question @relation(fields: [questionId],references: [id],onDelete: Cascade)
+  option Option? @relation(fields: [optionId],references: [id],onDelete: SetNull)
+  testSession TestSession @relation(fields: [testSessionId],references: [id],onDelete: Cascade)
+  @@map("studentAnswers")
+}
