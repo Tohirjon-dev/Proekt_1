@@ -12,13 +12,34 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"ali@gmail.com\",\r\n    \"password\":\"1212\",\r\n    \"fullname\":\"Ali Aliyev\",\r\n    \"role\":\"admin\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "ali@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "fullname",
+							"value": "Ali Aliyev",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "abc",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/USER/Downloads/pexels-lusaya-401107.jpg"
 						}
-					}
+					]
 				},
 				"url": {
 					"raw": "http://localhost:4000/users/register",
@@ -41,13 +62,24 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"ali@gmail.com\",\r\n    \"password\":\"1212\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "ali@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "abc",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/USER/Downloads/pexels-lusaya-401107.jpg"
 						}
-					}
+					]
 				},
 				"url": {
 					"raw": "http://localhost:4000/users/login",
@@ -111,7 +143,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Matematika\",\r\n    \"description\":\"Matematik analiz asoslari\"\r\n}",
+					"raw": "{\r\n    \"name\":\"Matematika 2\",\r\n    \"description\":\"Matematik analiz asoslari 2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -207,7 +239,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/subjects/1",
+					"raw": "http://localhost:4000/subjects/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -215,7 +247,7 @@
 					"port": "4000",
 					"path": [
 						"subjects",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -228,7 +260,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Kvadrat funksiya\",\r\n    \"subjectId\":2\r\n}",
+					"raw": "{\r\n    \"name\":\"LOgarifmlash\",\r\n    \"subjectId\":1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -295,7 +327,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Logarifmlar\",\r\n    \"subjectId\":2\r\n}",
+					"raw": "{\r\n    \"name\":\"Uchburchaklar\",\r\n    \"subjectId\":1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -323,7 +355,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/topics/subjectByTopics/2",
+					"raw": "http://localhost:4000/topics/subjectByTopics/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -332,7 +364,7 @@
 					"path": [
 						"topics",
 						"subjectByTopics",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -365,7 +397,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"title\": \"Matematika Test 2\",\r\n  \"description\": \"Bu matematika fanidan test 2\",\r\n  \"difficulty\": \"Medium\",\r\n  \"timeLimit\": 120,\r\n  \"topicId\": 2\r\n}\r\n",
+					"raw": "{\r\n  \"title\": \"Matematika Test 3\",\r\n  \"description\": \"Bu matematika fanidan test 3\",\r\n  \"difficulty\": \"Medium\",\r\n  \"timeLimit\": 120,\r\n  \"topicId\": 2\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -502,7 +534,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"text\": \"5*5 nechiga teng?\",\r\n  \"testId\": 1\r\n}",
+					"raw": "{\r\n  \"text\": \"5+12 nechiga teng?\",\r\n  \"testId\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
